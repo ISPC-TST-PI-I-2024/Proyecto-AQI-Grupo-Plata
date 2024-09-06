@@ -1,4 +1,3 @@
-# Uh1tk6: Desarrollar microservicio básico para recolección de datos
 
 ## Descripción General
 
@@ -8,14 +7,15 @@ Los datos recogidos son filtrados y mostrados en el monitor serie.
 
 ## Estructura del Proyecto
 
-src/   
-├── main.cpp   
+test/
 ├── MQ135Sensor.cpp   
 ├── MQ135Sensor.h   
 ├── AHT25Sensor.cpp   
 ├── AHT25Sensor.h   
 ├── BMP280Sensor.cpp   
 ├── BMP280Sensor.h  
+src/   
+├── main.cpp   
 
   
 
