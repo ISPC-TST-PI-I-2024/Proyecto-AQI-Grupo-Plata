@@ -1,11 +1,29 @@
+# Sensor Testing Directory
 
-This directory is intended for PlatformIO Test Runner and project tests.
+Este directorio contiene las pruebas unitarias de los diferentes sensores utilizados en el proyecto. Cada sensor tiene sus respectivos archivos `.cpp` y `.h` que definen las pruebas y el comportamiento esperado de los sensores. Las pruebas están diseñadas para asegurar que cada sensor funcione correctamente dentro del sistema IoT y que sus datos puedan ser confiables en el contexto de la monitorización ambiental.
 
-Unit Testing is a software testing method by which individual units of
-source code, sets of one or more MCU program modules together with associated
-control data, usage procedures, and operating procedures, are tested to
-determine whether they are fit for use. Unit testing finds problems early
-in the development cycle.
+## Sensores Implementados
 
-More information about PlatformIO Unit Testing:
-- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+### 1. AHT25 (Sensor de Temperatura y Humedad)
+- **Archivos**: `AHT25Sensor.cpp`, `AHT25Sensor.h`
+- **Descripción**: Este sensor se utiliza para medir la temperatura y la humedad en tiempo real. Las pruebas aseguran que las lecturas de temperatura y humedad estén dentro de los márgenes de precisión especificados por el fabricante.
+
+### 2. BMP280 (Sensor de Presión Atmosférica y Temperatura)
+- **Archivos**: `BMP280Sensor.cpp`, `BMP280Sensor.h`
+- **Descripción**: El sensor BMP280 mide la presión atmosférica y la temperatura. Las pruebas verifican la estabilidad de las lecturas en diversas condiciones de presión y temperatura.
+
+### 3. MQ135 (Sensor de Calidad de Aire)
+- **Archivos**: `MQ135Sensor.cpp`, `MQ135Sensor.h`
+- **Descripción**: Este sensor detecta varios gases presentes en el aire, como el dióxido de carbono (CO2) y otros gases tóxicos. Las pruebas validan la sensibilidad del sensor a estos gases y su capacidad para identificar niveles peligrosos en el aire.
+
+## Próximos a implementar
+
+- **GY-302** (Sensor de Luz)
+- **ML8511** (Sensor de Radiación UV)
+- **WS2812** (LED RGB Addressable)
+
+Estos sensores juntto con el LED RGB se integrarán y probarán en futuras versiones del proyecto.
+
+## Información Adicional
+
+Este proyecto utiliza el sistema de **Unit Testing** de PlatformIO para verificar la funcionalidad de cada sensor de manera individual. Las pruebas ayudan a identificar problemas en las primeras etapas del ciclo de desarrollo y garantizan la integridad del código.
