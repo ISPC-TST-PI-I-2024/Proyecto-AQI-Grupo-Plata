@@ -1,0 +1,8 @@
+## ¿Cómo usar este programa?  
+
+**Configuración del hardware**  
+→ Conecta el display LCD 16x2 al ESP32 utilizando el módulo I2C. Asegúrate de conectar los pines SDA y SCL del ESP32 a los pines correspondientes del módulo I2C.  
+**Subir el código**  
+→ Abre el proyecto en PlatformIO.  
+→ Asegúrate de que los archivos main.cpp, lcd_display.cpp, y lcd_display.h estén correctamente configurados.  
+→ Compila y sube el código al ESP32.

@@ -106,7 +106,28 @@ Devuelve `true` si los datos son válidos y `false` si no lo son.
   - **Temperatura:** -40°C a 80°C
   - **Presión:** 300 hPa a 1100 hPa
 
-  ## 5. **Esquema de Implementacion del ESP32 con sus Conexiones**
+## 5. **LCDDisplay.h y LCDDisplay.cpp**
+
+Estos archivos implementan la clase `LCDDisplay`, que se encarga de gestionar la pantalla LCD de 16x2 con conexión I2C. El display permite mostrar información de texto en tiempo real, lo que resulta útil para visualizar datos del sistema, como lecturas de sensores y mensajes de estado.
+
+### Funciones clave:
+- `begin()`:   
+Inicializa la pantalla LCD utilizando el bus I2C. Configura la dirección y el tamaño del display.
+
+- `printMessage(const String &message)`:   
+Permite mostrar un mensaje personalizado en la pantalla LCD, comenzando desde la posición inicial (0,0) de la pantalla.
+
+- `clear()`:   
+Limpia el contenido actual de la pantalla, permitiendo que nuevos mensajes se muestren sin sobreescribir texto anterior.
+
+**Características del Display LCD 16x2:**
+- **Tipo:** Display alfanumérico
+- **Conexión:** I2C (GPIO21 - SDA, GPIO22 - SCL)
+- **Resolución:** 16 columnas x 2 filas
+- **Control:** Texto en tiempo real con posibilidad de limpiar y actualizar la pantalla.  
+
+# Esquema de Implementacion del ESP32 con sus Conexiones**  
+
 
 ![Esquema de coneccion](https://github.com/user-attachments/assets/5f5cb24f-54a3-4713-b13c-3904172625a3)
 
@@ -147,17 +168,18 @@ En el esquema del proyecto de monitoreo de calidad del aire con el ESP32, se est
 
 Todos estos dispositivos están conectados a través de protocolos analógicos y digitales (I2C para varios sensores), mientras que el ESP32 procesa los datos y controla las salidas como la pantalla y el LED.
 
-## **Librerias necesarias**
+## **Librerías necesarias**
 
-Para que el programa funcione es necesario instalar las siguientes librerias en el IDE:  
+Para que el programa funcione es necesario instalar las siguientes librerías en el IDE:
 
 - **Adafruit BMP280.h**
 - **Adafruit AHTX0.h**
-- **MQ135.h**   
+- **MQ135.h**
+- **LiquidCrystal_I2C.h**
 
-Para el caso de PlatformIO la mismas pueden instalarse desde el gestor de librerias buscando el nombre de cada una, y haciendo click en `install`.  
+Para el caso de PlatformIO, las mismas pueden instalarse desde el gestor de librerías buscando el nombre de cada una y haciendo click en `install`.
 
-### 2. **Configuración de Hardware**
+## **Configuración de Hardware**
 
 Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
 
@@ -174,6 +196,12 @@ Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
   
 - **BMP280 (I2C):**
   - **VCC:** 3.3V
+  - **GND:** GND
+  - **SDA:** GPIO21
+  - **SCL:** GPIO22
+
+- **Display LCD 16x2 (I2C):**
+  - **VCC:** 5V (o 3.3V, dependiendo del módulo)
   - **GND:** GND
   - **SDA:** GPIO21
   - **SCL:** GPIO22
