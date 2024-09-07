@@ -21,8 +21,9 @@ Este directorio contiene las pruebas unitarias de los diferentes sensores utiliz
 - **GY-302** (Sensor de Luz)
 - **ML8511** (Sensor de Radiación UV)
 - **WS2812** (LED RGB Addressable)
+- **Pantalla LCD** (Display LCD 16X2)
+- **touch** (3 touchs esp32)
 
-Estos sensores juntto con el LED RGB se integrarán y probarán en futuras versiones del proyecto.
 
 ## Información Adicional
 
