@@ -15,13 +15,15 @@ float MQ135Sensor::readFilteredData() {
     mq135Total -= mq135Readings[mq135ReadIndex];
     mq135Readings[mq135ReadIndex] = gas;
     mq135Total += mq135Readings[mq135ReadIndex];
-    mq135ReadIndex = (mq135ReadIndex + 1) % NUM_READINGS;
+    mq135ReadIndex = (mq135ReadIndex + 1) /* NUM_READINGS*/;
+    if (mq135ReadIndex == NUM_READINGS-1)
+        mq135ReadIndex = 0;
     mq135Average = mq135Total / NUM_READINGS;
 
     // Filtrado de datos erróneos
-    if (mq135Average < 10 || mq135Average > 1000) {
+    /*if (mq135Average > 0 || mq135Average < 1000) {
         return -1;
-    }
+    }*/
 
     return mq135Average;
 }
