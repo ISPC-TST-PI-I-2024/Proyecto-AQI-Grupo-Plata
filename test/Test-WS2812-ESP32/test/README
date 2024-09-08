@@ -1,0 +1,10 @@
+## ¿Cómo usar y probar este programa?
+
+Lo que debes hacer es copiar los archivos **ws2812.cpp** y **ws2812.h** que estan la carpeta de "test" y pegarlos en la carpeta de "src" junto con el archivo **main.cpp**.
+
+## Compilación y Carga
+
+1. Clona este repositorio en tu entorno local.
+2. Abre el proyecto en PlatformIO.
+3. Conecta tu ESP32.
+4. Compila y carga el programa en la placa utilizando PlatformIO.  

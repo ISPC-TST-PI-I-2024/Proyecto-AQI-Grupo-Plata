@@ -1,3 +1,4 @@
+# Uh1tk6: Desarrollar microservicio básico para recolección de datos
 
 ## Descripción General
 
@@ -7,11 +8,15 @@ Los datos recogidos son filtrados y mostrados en el monitor serie.
 
 ## Estructura del Proyecto
 
-**test/**  
-archivos.cpp  
-archivos.h  
-**src/**  
-main.cpp   
+lib/   
+├── MQ135Sensor.cpp   
+├── MQ135Sensor.h   
+├── AHT25Sensor.cpp   
+├── AHT25Sensor.h   
+├── BMP280Sensor.cpp   
+├── BMP280Sensor.h   
+src/  
+├── main.cpp
 
   
 
@@ -101,88 +106,26 @@ Devuelve `true` si los datos son válidos y `false` si no lo son.
 - **Rangos de validación:**
   - **Temperatura:** -40°C a 80°C
   - **Presión:** 300 hPa a 1100 hPa
+  
 
-## 5. **LCDDisplay.h y LCDDisplay.cpp**
+## **Librerias necesarias**
 
-Estos archivos implementan la clase `LCDDisplay`, que se encarga de gestionar la pantalla LCD de 16x2 con conexión I2C. El display permite mostrar información de texto en tiempo real, lo que resulta útil para visualizar datos del sistema, como lecturas de sensores y mensajes de estado.
-
-### Funciones clave:
-- `begin()`:   
-Inicializa la pantalla LCD utilizando el bus I2C. Configura la dirección y el tamaño del display.
-
-- `printMessage(const String &message)`:   
-Permite mostrar un mensaje personalizado en la pantalla LCD, comenzando desde la posición inicial (0,0) de la pantalla.
-
-- `clear()`:   
-Limpia el contenido actual de la pantalla, permitiendo que nuevos mensajes se muestren sin sobreescribir texto anterior.
-
-**Características del Display LCD 16x2:**
-- **Tipo:** Display alfanumérico
-- **Conexión:** I2C (GPIO21 - SDA, GPIO22 - SCL)
-- **Resolución:** 16 columnas x 2 filas
-- **Control:** Texto en tiempo real con posibilidad de limpiar y actualizar la pantalla.  
-
-# Esquema de Implementacion del ESP32 con sus Conexiones**  
-
-
-![Esquema de coneccion](https://github.com/user-attachments/assets/5f5cb24f-54a3-4713-b13c-3904172625a3)
-
-
-En el esquema del proyecto de monitoreo de calidad del aire con el ESP32, se están utilizando varios sensores y dispositivos conectados al microcontrolador ESP32 mediante diferentes protocolos.
-
-**<u> Sensor de Gas MQ135 (conexión analógica):**</u>
-
-- Este sensor mide la calidad del aire midiendo la concentración de gases. Está conectado a un pin analógico del ESP32 (marcado en rosa), que leerá las variaciones de voltaje que el sensor produce.
-
-**<u> Sensor de Luz BH1750 (conexión I2C):**</u>
-
-- Este sensor mide la intensidad lumínica y está conectado a los pines SCL y SDA del ESP32 (protocolos I2C, marcados en amarillo). Usa comunicación I2C, lo que permite compartir los mismos pines con otros dispositivos I2C.
-
-**<u> Sensor de Presión BMP280 (conexión I2C):**</u>
-
-- El BMP280 mide la presión y la temperatura. También usa comunicación I2C (pines SCL y SDA compartidos).
-
-**<u> Sensor de Temperatura y Humedad AM2320 (conexión I2C):**</u>
-
-- Similar al BH1750, este sensor usa I2C para medir temperatura y humedad. Comparte los pines I2C (SCL y SDA).
-
-**<u>Sensor UV ML8511 (conexión analógica):**</u>
-
-- El sensor mide los niveles de radiación ultravioleta. Está conectado a un pin analógico del ESP32.
-
-**<u> LED WS2812:**</u>
-
-- Este es un LED RGB direccionable. Su control se realiza por un pin digital del ESP32. Permite controlar la iluminación con diferentes colores.
-
-**<u>Pulsadores Touch:**</u>
-
-- Los botones táctiles están conectados a pines digitales del ESP32, permitiendo la interacción manual.
-
-**<u> Pantalla LCD 2x16 (conexión I2C):**</u>
-
-- La pantalla se conecta a los pines I2C (SCL y SDA), permitiendo mostrar información de los sensores.
-
-Todos estos dispositivos están conectados a través de protocolos analógicos y digitales (I2C para varios sensores), mientras que el ESP32 procesa los datos y controla las salidas como la pantalla y el LED.
-
-## **Librerías necesarias**
-
-Para que el programa funcione es necesario instalar las siguientes librerías en el IDE:
+Para que el programa funcione es necesario instalar las siguientes librerias en el IDE:  
 
 - **Adafruit BMP280.h**
 - **Adafruit AHTX0.h**
-- **MQ135.h**
-- **LiquidCrystal_I2C.h**
+- **MQ135.h**   
 
-Para el caso de PlatformIO, las mismas pueden instalarse desde el gestor de librerías buscando el nombre de cada una y haciendo click en `install`.
+Para el caso de PlatformIO la mismas pueden instalarse desde el gestor de librerias buscando el nombre de cada una, y haciendo click en `install`.  
 
-## **Configuración de Hardware**
+### 2. **Configuración de Hardware**
 
 Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
 
 - **MQ135 (Analógico):**
   - **VCC:** 3.3V
   - **GND:** GND
-  - **Salida de señal:** GPIO34 (ADC1_CH6)
+  - **Salida de señal:** GPIO36 (ADC1_CH0)
   
 - **AHT25 (I2C):**
   - **VCC:** 3.3V
@@ -192,12 +135,6 @@ Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
   
 - **BMP280 (I2C):**
   - **VCC:** 3.3V
-  - **GND:** GND
-  - **SDA:** GPIO21
-  - **SCL:** GPIO22
-
-- **Display LCD 16x2 (I2C):**
-  - **VCC:** 5V (o 3.3V, dependiendo del módulo)
   - **GND:** GND
   - **SDA:** GPIO21
   - **SCL:** GPIO22
@@ -220,10 +157,6 @@ Abrir el **Monitor Serie** en el IDE y configurarlo a **115200 baudios** para ob
 Este proyecto está diseñado para ser fácilmente escalable.   
 Se puedes agregar más sensores o funcionalidades, como enviar los datos a una plataforma en la nube o a un servidor remoto.   
 El código modular facilita la incorporación de nuevas características sin afectar la estructura existente.
-
-## Contribuciones
-
-Si deseas contribuir a este proyecto, por favor, abre un issue o un pull request. Todas las contribuciones son bienvenidas.
 
 ## Licencia
 
