@@ -1,5 +1,6 @@
 #include <Arduino.h>
-#include "ML8511Sensor.h"
+#include <ML8511.h>
+
 
 ML8511Sensor uvSensor(GPIO34, 3.3);
 
