@@ -3,6 +3,8 @@
 #include "MQ135Sensor.h"
 #include "AHT25Sensor.h"
 #include "BMP280Sensor.h"
+#include "BH1759-GY302Sensor.h"
+
 
 // --------------------- Configuración de Pines ---------------------
 #define MQ135_PIN 34 // GPIO34 (ADC1_CH6)
