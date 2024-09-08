@@ -1,8 +1,8 @@
 # Sensor Testing Directory
 
-Este directorio contiene las pruebas unitarias de los diferentes sensores utilizados en el proyecto. Cada sensor tiene sus respectivos archivos `.cpp` y `.h` que definen las pruebas y el comportamiento esperado de los sensores. Las pruebas están diseñadas para asegurar que cada sensor funcione correctamente dentro del sistema IoT y que sus datos puedan ser confiables en el contexto de la monitorización ambiental.
+Este directorio contiene las pruebas unitarias de los diferentes sensores y módulos utilizados en el proyecto. Cada sensor y módulo tiene sus respectivos archivos `.cpp` y `.h` que definen las pruebas y el comportamiento esperado. Las pruebas están diseñadas para asegurar que cada componente funcione correctamente dentro del sistema IoT y que sus datos puedan ser confiables en el contexto de la monitorización ambiental.
 
-## Sensores Implementados
+## Sensores y Módulos Implementados
 
 ### 1. AHT25 (Sensor de Temperatura y Humedad)
 - **Archivos**: `AHT25Sensor.cpp`, `AHT25Sensor.h`
@@ -16,15 +16,23 @@ Este directorio contiene las pruebas unitarias de los diferentes sensores utiliz
 - **Archivos**: `MQ135Sensor.cpp`, `MQ135Sensor.h`
 - **Descripción**: Este sensor detecta varios gases presentes en el aire, como el dióxido de carbono (CO2) y otros gases tóxicos. Las pruebas validan la sensibilidad del sensor a estos gases y su capacidad para identificar niveles peligrosos en el aire.
 
+### 4. ML8511 (Sensor de Radiación UV)
+- **Archivos**: `ML8511Sensor.cpp`, `ML8511Sensor.h`
+- **Descripción**: Este sensor mide la radiación ultravioleta (UV). Las pruebas aseguran la precisión de las lecturas de UV y verifican que el sensor responde adecuadamente a diferentes niveles de radiación solar.
+
+### 5. WS2812 (LED RGB Addressable)
+- **Archivos**: `WS2812.cpp`, `WS2812.h`
+- **Descripción**: Este módulo controla un anillo de LEDs WS2812 RGB direccionables. Las pruebas verifican la correcta configuración de los colores y la secuencia de cambio de color, asegurando que todos los LEDs respondan adecuadamente.
+
+### 6. Pantalla LCD 16x2 (Display LCD)
+- **Archivos**: `LCDDisplay.cpp`, `LCDDisplay.h`
+- **Descripción**: La pantalla LCD 16x2 se utiliza para mostrar información relevante del sistema. Las pruebas garantizan la correcta visualización de los caracteres y la actualización de los datos en la pantalla.
+
 ## Próximos a implementar
 
 - **GY-302** (Sensor de Luz)
-- **ML8511** (Sensor de Radiación UV)
-- **WS2812** (LED RGB Addressable)
-- **Pantalla LCD** (Display LCD 16X2)
-- **touch** (3 touchs esp32)
-
+- **Touch** (3 Touchs ESP32)
 
 ## Información Adicional
 
-Este proyecto utiliza el sistema de **Unit Testing** de PlatformIO para verificar la funcionalidad de cada sensor de manera individual. Las pruebas ayudan a identificar problemas en las primeras etapas del ciclo de desarrollo y garantizan la integridad del código.
+Este proyecto utiliza el sistema de **Unit Testing** de PlatformIO para verificar la funcionalidad de cada sensor y módulo de manera individual. Las pruebas ayudan a identificar problemas en las primeras etapas del ciclo de desarrollo y garantizan la integridad del código.

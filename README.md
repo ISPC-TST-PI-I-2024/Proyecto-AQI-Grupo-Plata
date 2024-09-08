@@ -7,15 +7,11 @@ Los datos recogidos son filtrados y mostrados en el monitor serie.
 
 ## Estructura del Proyecto
 
-test/  
-├── MQ135Sensor.cpp   
-├── MQ135Sensor.h   
-├── AHT25Sensor.cpp   
-├── AHT25Sensor.h   
-├── BMP280Sensor.cpp   
-├── BMP280Sensor.h  
-src/   
-├── main.cpp   
+**test/**  
+archivos.cpp  
+archivos.h  
+**src/**  
+main.cpp   
 
   
 
