@@ -28,6 +28,10 @@ Este directorio contiene las pruebas unitarias de los diferentes sensores y mód
 - **Archivos**: `LCDDisplay.cpp`, `LCDDisplay.h`
 - **Descripción**: La pantalla LCD 16x2 se utiliza para mostrar información relevante del sistema. Las pruebas garantizan la correcta visualización de los caracteres y la actualización de los datos en la pantalla.
 
+### 7. BH1750-GY302 (sensor de Luz)
+- **Archivos**: `BH1750-GY302.cpp`, `BH1750-GY302.h`
+- **Descripción**: mide la intensidad de la luz en unidades de lux. Utiliza un protocolo de comunicación I²C para transmitir los datos al microcontrolador, lo que permite lecturas precisas y rápidas de la luz sin necesidad de calibración adicional.
+
 ## Próximos a implementar
 
 - **GY-302** (Sensor de Luz)
