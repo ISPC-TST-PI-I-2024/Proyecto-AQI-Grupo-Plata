@@ -71,3 +71,16 @@ void loop() {
     Serial.println("---------------------------");
     delay(2000);
 }
+
+ // Lectura del sensor de luz BH1750
+    float lux = lightMeter.readLightLevel(); {
+    if (lux < 0) {
+        Serial.println("Lectura BH1750 inválida.");
+    } else {
+        Serial.print("BH1750 Luz: ");
+        Serial.print(lux);
+        Serial.println(" lux");
+    }
+    Serial.println("---------------------------");
+    delay(2000);  // Pausa de 2 segundos entre lecturas
+}
