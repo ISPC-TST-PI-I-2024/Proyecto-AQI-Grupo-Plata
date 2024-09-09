@@ -1,7 +1,5 @@
 #include <Arduino.h>
-#include "BH1750_Sensor.h"
-#include "myFunctions.h"  
-
+#include <BH1750.h>
 
 BH1750_Sensor sensor;
 
@@ -22,4 +20,4 @@ void loop() {
     Serial.println(resultado);  // Imprime el resultado (3 + 4 = 7)
 
     delay(1000);  // Leer cada segundo
-
+}

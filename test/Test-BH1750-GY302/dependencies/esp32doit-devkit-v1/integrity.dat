@@ -1,0 +1,5 @@
+pinchy/MPU6050 @ ^0.0.2
+johnnyb/NewPing @ ^1.9.1
+adafruit/Adafruit BME280 Library @ ^2.0.3
+adafruit/DHT sensor library @ ^1.4.3
+rogueduck/BH1750 @ ^1.0.2
