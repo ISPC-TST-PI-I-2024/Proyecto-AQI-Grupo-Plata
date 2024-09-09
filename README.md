@@ -1,4 +1,6 @@
 
+[![imagen-ispc-AQI.jpg](https://i.postimg.cc/VNLgnVq1/imagen-ispc-AQI.jpg)](https://postimg.cc/QFwcrSYn)
+
 ## Descripción General
 
 Este proyecto tiene como objetivo desarrollar un microservicio utilizando un ESP32-Wroom de 38 pines para la recolección de datos de tres sensores: **MQ135**, **AHT25** y **BMP280**.   
