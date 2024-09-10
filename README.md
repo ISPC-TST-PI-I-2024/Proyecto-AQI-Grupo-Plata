@@ -16,7 +16,7 @@ main.cpp
 
 ## Descripción de los Módulos
 
-[![1-1-1.jpg](https://i.postimg.cc/tTGsWz4X/1-1-1.jpg)](https://postimg.cc/SXVQpC95) 
+ [![1-2-1.jpg](https://i.postimg.cc/4xBCz44n/1-2-1.jpg)](https://postimg.cc/DSJYhTXK) 
 
 ### 1. **main.cpp**
 
