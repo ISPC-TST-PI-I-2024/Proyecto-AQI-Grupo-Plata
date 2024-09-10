@@ -14,9 +14,6 @@ archivos.h
 **src/**  
 main.cpp   
 
-
-## Descripción de los Módulos
-
 ## Descripción de los Módulos
 
 ### 1. **main.cpp**
