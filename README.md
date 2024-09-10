@@ -3,9 +3,8 @@
 
 ## Descripción General
 
-Este proyecto tiene como objetivo desarrollar un microservicio utilizando un ESP32-Wroom de 38 pines para la recolección de datos de tres sensores: **MQ135**, **AHT25** y **BMP280**.   
-El sistema está diseñado para ser escalable y fácil de mantener, con cada sensor gestionado por un módulo independiente.  
-Los datos recogidos son filtrados y mostrados en el monitor serie.
+Este proyecto tiene como objetivo desarrollar un microservicio utilizando un ESP32-Wroom de 38 pines para la recolección de datos de varios sensores: **MQ135, AHT25, BMP280, BH1750, ML8511,** la gestión de un módulo LED **WS2812**.
+El sistema está diseñado para ser escalable y fácil de mantener, con cada sensor gestionado por un módulo independiente. Los datos recogidos son filtrados y mostrados en el monitor serie.  
 
 ## Estructura del Proyecto
 
@@ -15,114 +14,103 @@ archivos.h
 **src/**  
 main.cpp   
 
-  
 
 ## Descripción de los Módulos
 
-## 1. **main.cpp**
+## Descripción de los Módulos
 
-En este modulo se maneja la ejecución del programa, inicializando cada uno de los módulos de sensores y gestionando el bucle principal donde se realizan las lecturas de datos. Los datos obtenidos de cada sensor se filtran para eliminar valores erróneos y se muestran en el monitor serie.
+### 1. **main.cpp**
 
-### Flujo de trabajo en `main.cpp`:
-- Inicializa el sistema de sensores en el `setup()`.
+En este módulo se maneja la ejecución del programa, inicializando cada uno de los módulos de sensores y gestionando el bucle principal donde se realizan las lecturas de datos. Los datos obtenidos de cada sensor se filtran para eliminar valores erróneos y se muestran en el monitor serie.
+
+#### Flujo de trabajo en `main.cpp`:
+
+- Inicializa el sistema de sensores en `setup()`.
 - Realiza lecturas cíclicas en el `loop()`, llamando a los métodos de cada módulo sensor.
 - Muestra los datos en el monitor serie y maneja la lógica básica de filtrado.
 
-## 2. **MQ135Sensor.h y MQ135Sensor.cpp**
+### 2. **MQ135Sensor.h y MQ135Sensor.cpp**
 
-Estos archivos implementan la clase `MQ135Sensor`, encargada de gestionar el sensor **MQ135** que mide la calidad del aire. El sensor MQ135 puede detectar concentraciones de gas entre 10 y 1000 ppm y es útil para la detección de gases nocivos como amoniaco, dióxido de nitrógeno, alcohol, benceno, dióxido y monóxido de carbono.   
+Estos archivos implementan la clase `MQ135Sensor`, encargada de gestionar el sensor **MQ135** que mide la calidad del aire.
 
-### Funciones clave:
-- `begin()`:   
-Inicializa el sensor y configura el filtro de media móvil para suavizar las lecturas.
-- `readFilteredData()`:   
-Lee los datos del sensor, aplica un filtro de media móvil para suavizar las lecturas y descarta valores fuera de un rango predefinido (10-1000 PPM).   
-Devuelve el valor filtrado o -1 si la lectura es inválida.  
+#### Funciones clave:
 
-### Que es un filtro de media movil?
-Un filtro de media móvil es un método numérico utilizado para reducir el ruido y la volatilidad en una serie de datos, permitiendo visualizar tendencias y patrones más claros. Su función básica es calcular la media de los valores más recientes de la serie y utilizarla como una aproximación más estable de la tendencia actual.
+- `begin()`: Inicializa el sensor y configura el filtro de media móvil para suavizar las lecturas.
+- `readFilteredData()`: Lee los datos del sensor, aplica un filtro de media móvil y devuelve el valor filtrado o -1 si la lectura es inválida.
 
-En términos prácticos, un filtro de media móvil se aplica de la siguiente manera:
-
-1. Se define un tamaño de ventana (N) que indica cuántos valores más recientes se consideran para calcular la media.
-2. Se itera sobre la serie de datos, empezando desde el primer valor y hasta el valor actual.
-3. Se calcula la media de los N valores más recientes, descartando el primer valor de la ventana al calcular la media y añadiendo el nuevo valor.
-3. El resultado es el valor filtrado, que se utiliza como una estimación más estable de la tendencia actual.   
-
-**Ventajas y desventajas**  
-* Ventajas:   
-  - sencillo de implementar  
-  - Rápido de calcular   
-  - Eficaz para reducir el ruido de alta frecuencia.  
-
-* Desventajas:   
-  - Puede eliminar componentes auténticos de la señal si el tamaño de la ventana es demasiado grande.   
-  - Puede ser débil para detectar cambios bruscos en la tendencia.
-
-**Características del MQ135:**
-- **Tipo:** Sensor analógico
-- **Conexión:** Pin analógico (GPIO34)
-- **Filtro:** Media móvil con 10 lecturas
-
-## 3. **AHT25Sensor.h y AHT25Sensor.cpp**
+### 3. **AHT25Sensor.h y AHT25Sensor.cpp**
 
 Estos archivos implementan la clase `AHT25Sensor`, responsable de gestionar el sensor **AHT25** que mide temperatura y humedad relativa.
 
-### Funciones clave:
-- `begin()`:   
-Inicializa el sensor **AHT25** y verifica su disponibilidad en el bus I2C.  
+#### Funciones clave:
 
-- `readData(float &temperature, float &humidity)`:   
-Lee los datos de temperatura y humedad desde el sensor.   
-Aplicando un filtro que descarta valores fuera de los rangos aceptables.   
-Devuelve `true` si los datos son válidos y `false` si no lo son.
+- `begin()`: Inicializa el sensor y verifica su disponibilidad en el bus I2C.
+- `readData(float &temperature, float &humidity)`: Lee los datos de temperatura y humedad, aplicando filtros de validación.
 
-**Características del AHT25:**
-- **Tipo:** Sensor digital (I2C)
-- **Conexión:** I2C (GPIO21 - SDA, GPIO22 - SCL)
-- **Rangos de validación:**
-  - **Temperatura:** -40°C a 80°C
-  - **Humedad:** 0% a 100%
+### 4. **BMP280Sensor.h y BMP280Sensor.cpp**
 
-## 4. **BMP280Sensor.h y BM2p80Sensor.cpp**
+Estos archivos implementan la clase `BMP280Sensor`, que gestiona el sensor **BMP280** para la medición de temperatura y presión barométrica.
 
-Estos archivos implementan la clase `BMP280Sensor`, que gestiona el sensor **BMP280** para la medición de temperatura, presión barométrica y humedad relativa.
+#### Funciones clave:
 
-### Funciones clave:
-- `begin()`:   
-Inicializa el sensor **BMP280** y verifica su disponibilidad en el bus I2C.  
+- `begin()`: Inicializa el sensor y verifica su disponibilidad en el bus I2C.
+- `readData(float &temperature, float &pressure)`: Lee los datos de temperatura y presión del sensor, aplicando filtros para descartar valores fuera de rangos predefinidos.
 
-- `readData(float &temperature, float &pressure)`:   
-Lee los datos de temperatura, y presión del sensor.   
-Aplica filtros para descartar valores fuera de rangos predefinidos.   
-Devuelve `true` si los datos son válidos y `false` si no lo son.
+### 5. **LCDDisplay.h y LCDDisplay.cpp**
 
-**Características del BME280:**
-- **Tipo:** Sensor digital (I2C)
-- **Conexión:** I2C (GPIO21 - SDA, GPIO22 - SCL)
-- **Rangos de validación:**
-  - **Temperatura:** -40°C a 80°C
-  - **Presión:** 300 hPa a 1100 hPa
+Estos archivos implementan la clase `LCDDisplay`, que se encarga de gestionar la pantalla **LCD de 16x2** con conexión I2C.
 
-## 5. **LCDDisplay.h y LCDDisplay.cpp**
+#### Funciones clave:
 
-Estos archivos implementan la clase `LCDDisplay`, que se encarga de gestionar la pantalla LCD de 16x2 con conexión I2C. El display permite mostrar información de texto en tiempo real, lo que resulta útil para visualizar datos del sistema, como lecturas de sensores y mensajes de estado.
+- `begin()`: Inicializa la pantalla LCD utilizando el bus I2C.
+- `printMessage(const String &message)`: Muestra un mensaje personalizado en la pantalla LCD.
+- `clear()`: Limpia el contenido de la pantalla.
 
-### Funciones clave:
-- `begin()`:   
-Inicializa la pantalla LCD utilizando el bus I2C. Configura la dirección y el tamaño del display.
+### 6. **BH1750Sensor.h y BH1750Sensor.cpp**
 
-- `printMessage(const String &message)`:   
-Permite mostrar un mensaje personalizado en la pantalla LCD, comenzando desde la posición inicial (0,0) de la pantalla.
+Estos archivos implementan la clase `BH1750Sensor`, encargada de gestionar el sensor **BH1750** que mide la intensidad lumínica.
 
-- `clear()`:   
-Limpia el contenido actual de la pantalla, permitiendo que nuevos mensajes se muestren sin sobreescribir texto anterior.
+#### Funciones clave:
 
-**Características del Display LCD 16x2:**
-- **Tipo:** Display alfanumérico
-- **Conexión:** I2C (GPIO21 - SDA, GPIO22 - SCL)
-- **Resolución:** 16 columnas x 2 filas
-- **Control:** Texto en tiempo real con posibilidad de limpiar y actualizar la pantalla.  
+- `begin()`: Inicializa el sensor BH1750 y configura su modo de operación en el bus I2C.
+- `readLightLevel()`: Lee el nivel de luz en luxes del sensor y devuelve el valor. Aplica un filtro para descartar lecturas fuera del rango.
+
+#### Características del BH1750:
+
+- **Tipo**: Sensor digital (I2C)
+- **Conexión**: I2C (GPIO21 - SDA, GPIO22 - SCL)
+- **Rango**: 1 a 65,535 lux
+
+### 7. **ML8511Sensor.h y ML8511Sensor.cpp**
+
+Estos archivos implementan la clase `ML8511Sensor`, responsable de gestionar el sensor **ML8511** que mide la radiación ultravioleta.
+
+#### Funciones clave:
+
+- `begin()`: Inicializa el sensor ML8511.
+- `readUVIntensity()`: Lee el nivel de radiación UV y devuelve el valor en mW/cm².
+
+#### Características del ML8511:
+
+- **Tipo**: Sensor analógico
+- **Conexión**: Pin analógico (GPIO34)
+- **Rango**: 0 a 15 mW/cm²
+
+### 8. **WS2812.h y WS2812.cpp**
+
+Estos archivos implementan la clase `WS2812`, que gestiona el módulo LED **WS2812** para control de iluminación RGB.
+
+#### Funciones clave:
+
+- `begin()`: Inicializa el módulo LED.
+- `setColor(uint8_t r, uint8_t g, uint8_t b)`: Configura el color del LED.
+- `cycleColors()`: Realiza una animación de colores cíclica (rojo, amarillo, verde).
+
+#### Características del WS2812:
+
+- **Tipo**: LED direccionable
+- **Conexión**: Pin digital (GPIO14)
+- **Colores**: RGB
 
 # Esquema de Implementacion del ESP32 con sus Conexiones**  
 
@@ -177,7 +165,7 @@ Para que el programa funcione es necesario instalar las siguientes librerías en
 
 Para el caso de PlatformIO, las mismas pueden instalarse desde el gestor de librerías buscando el nombre de cada una y haciendo click en `install`.
 
-## **Configuración de Hardware**
+# **Configuración de Hardware**
 
 Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
 
@@ -202,7 +190,24 @@ Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
   - **VCC:** 5V (o 3.3V, dependiendo del módulo)
   - **GND:** GND
   - **SDA:** GPIO21
+  - **SCL:** GPIO22 
+
+- **BH1750 (I2C):**
+  - **VCC:** 3.3V
+  - **GND:** GND
+  - **SDA:** GPIO21
   - **SCL:** GPIO22
+
+- **ML8511 (Analógico):**
+  - **VCC:** 3.3V
+  - **GND:** GND
+  - **Salida de señal:** GPIO36 (ADC1_CH0)
+  
+- **WS2812 (LED RGB direccionable):**
+  - **VCC:** 5V
+  - **GND:** GND
+  - **Datos:** GPIO14
+
 
 ### 3. **Compilación y Carga del Código**
 
