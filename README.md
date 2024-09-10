@@ -16,7 +16,7 @@ main.cpp
 
 ## Descripción de los Módulos
 
- [![1-2-1.jpg](https://i.postimg.cc/4xBCz44n/1-2-1.jpg)](https://postimg.cc/DSJYhTXK) 
+[![umagen-sensores-completa.jpg](https://i.postimg.cc/tgQrhP0X/umagen-sensores-completa.jpg)](https://postimg.cc/874BG7P3) 
 
 ### 1. **main.cpp**
 
@@ -155,6 +155,8 @@ Todos estos dispositivos están conectados a través de protocolos analógicos y
 
 ## **Librerías necesarias**
 
+[![imagen-libreria-completa.jpg](https://i.postimg.cc/SK6gVsqc/imagen-libreria-completa.jpg)](https://postimg.cc/GBpPmb4p) 
+
 Para que el programa funcione es necesario instalar las siguientes librerías en el IDE:
 
 - **Adafruit BMP280.h**
@@ -165,6 +167,8 @@ Para que el programa funcione es necesario instalar las siguientes librerías en
 Para el caso de PlatformIO, las mismas pueden instalarse desde el gestor de librerías buscando el nombre de cada una y haciendo click en `install`.
 
 # **Configuración de Hardware**
+
+[![imagen-configuracion-conpleta.jpg](https://i.postimg.cc/GpCQBCYt/imagen-configuracion-conpleta.jpg)](https://postimg.cc/w1wJPnwY)    
 
 Los sensores se conectan al ESP32-Wroom según las siguientes especificaciones:
 
