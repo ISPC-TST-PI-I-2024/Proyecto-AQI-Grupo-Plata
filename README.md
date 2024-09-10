@@ -16,6 +16,8 @@ main.cpp
 
 ## Descripción de los Módulos
 
+[![1-1-1.jpg](https://i.postimg.cc/tTGsWz4X/1-1-1.jpg)](https://postimg.cc/SXVQpC95)
+
 ### 1. **main.cpp**
 
 En este módulo se maneja la ejecución del programa, inicializando cada uno de los módulos de sensores y gestionando el bucle principal donde se realizan las lecturas de datos. Los datos obtenidos de cada sensor se filtran para eliminar valores erróneos y se muestran en el monitor serie.
