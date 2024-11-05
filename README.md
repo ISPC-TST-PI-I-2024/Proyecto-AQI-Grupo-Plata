@@ -1,5 +1,5 @@
 
-[![imagen-ispc-AQI.jpg](https://i.postimg.cc/VNLgnVq1/imagen-ispc-AQI.jpg)](https://postimg.cc/QFwcrSYn)
+![imagen G P A Q I](https://github.com/user-attachments/assets/8f478eb7-4898-481a-a28f-028a66bdbcdf)
 
 ## Descripción General
 
